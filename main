@@ -1,0 +1,17 @@
+"""
+author: Grzegorz 
+task: google trend checker
+"""
+import requests
+import json
+
+def trend(country='US'):
+    url = f"https://trends.google.com/trends/api/trendingsearches/daily?hl=en-US&tz=0&geo={country}"
+    resp = requests.get(url)
+    text = resp.text.lstrip(")]}',\n")
+    data = json.loads(text)
+    trending = data['default']['trendingSearchesDays'][0]['trendingSearches']
+    return [item['title']['query'] for item in trending]
+
+top_search = trend('PL')  # PL = Poland
+print("Najbardziej popularny wynik w Polsce to", top_search[0])
