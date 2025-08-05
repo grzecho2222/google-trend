@@ -13,5 +13,5 @@ def trend(country='US'):
     trending = data['default']['trendingSearchesDays'][0]['trendingSearches']
     return [item['title']['query'] for item in trending]
 
-top_search = trend('PL')  # PL = Poland
-print("Najbardziej popularny wynik w Polsce to", top_search[0])
+top_search = trend('US')
+print("Najbardziej popularny wynik w USA to", top_search[0])
